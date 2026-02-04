@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { CartService } from '../cart.service'
 import {CurrencyPipe} from '@angular/common';
-import {Product} from '../products';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {RouterLink} from '@angular/router';
 
@@ -26,10 +25,6 @@ export class Cart implements OnInit {
       address: ''
     });
   }
-
-
-
-
   ngOnInit(): void {
     this.cartService.items = this.cartService.getItems();
     }

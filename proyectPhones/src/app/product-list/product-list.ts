@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-
-import {products} from '../products';
+import {ChangeDetectorRef, Component, inject, Injectable, OnInit} from '@angular/core';
 import {ProductAlerts} from '../product-alerts/product-alerts';
 import {RouterLink} from '@angular/router';
+import {Product, ProductListService} from '../products';
+
+@Injectable({ providedIn: 'root' })
 
 @Component({
   selector: 'app-product-list',
@@ -13,8 +14,19 @@ import {RouterLink} from '@angular/router';
     RouterLink
   ]
 })
-export class ProductList {
-  products = [...products];
+export class ProductList implements OnInit {
+
+  private productService = inject(ProductListService);
+  private chageDetectorRef = inject(ChangeDetectorRef);
+
+
+  products: Product[] | undefined;
+
+  async ngOnInit(): Promise<void> {
+    this.products = await this.productService.getProducts();
+    this.chageDetectorRef.markForCheck()
+
+  }
 
   share() {
     window.alert('The product has been shared!');
