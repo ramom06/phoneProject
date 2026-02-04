@@ -1,34 +1,33 @@
-import {Provider} from './provider';
-import {Injectable} from '@angular/core';
-
 export interface Product {
   id: number;
   name: string;
   price: number;
   description: string;
-  provider: number;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-
-export class ProductListService {
-  private readonly url = 'assets/products.json';
-
-  async getProducts(): Promise<Product[]> {
-    try {
-      const response = await fetch(this.url);
-      if (!response.ok) throw new Error('No se pudo cargar el archivo local');
-
-      const data = await response.json();
-      return data.products;
-    } catch (error) {
-      console.error('Error de infraestructura:', error);
-      return [];
-    }
+export const products = [
+  {
+    id: 1,
+    name: 'Phone XL',
+    price: 799,
+    description: 'A large phone with one of the best screens',
+    provider: 1
+  },
+  {
+    id: 2,
+    name: 'Phone Mini',
+    price: 699,
+    description: 'A great phone with one of the best cameras',
+    provider: 1
+  },
+  {
+    id: 3,
+    name: 'Phone Standard',
+    price: 299,
+    description: '',
+    provider: 2
   }
-}
+];
 
 
 /*

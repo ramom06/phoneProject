@@ -10,7 +10,7 @@ export interface Provider {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // <-- ESTA LÍNEA ES LA QUE SOLUCIONA EL ERROR
 })
 
 export class ProviderService{
@@ -26,7 +26,7 @@ export class ProviderService{
       return data.providers; // Accedemos a la propiedad "providers" del JSON
     } catch (error) {
       console.error('Error de infraestructura:', error);
-      return []; // Devolvemos un array vacío como fallback inicial
+      return []; // Devolvemos un array vacío como fallback inicial [cite: 54, 55]
     }
   }
 }

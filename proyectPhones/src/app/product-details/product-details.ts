@@ -1,7 +1,7 @@
-import {Component, OnInit, inject, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 
-import {Product, ProductListService} from '../products';
+import { Product, products } from '../products';
 import {CurrencyPipe} from '@angular/common';
 import { CartService } from '../cart.service';
 
@@ -18,24 +18,20 @@ import { CartService } from '../cart.service';
 
 // Se implemente Oninit para usar el metodo ngOnInit
 export class ProductDetails implements OnInit {
+    ngOnInit(): void {
 
-  private productListService = inject(ProductListService);
-  private chageDetectorRef = inject(ChangeDetectorRef);
+      //Guarda los parametros de la ruta
+      const routeParams = this.route.snapshot.paramMap;
 
-  product: Product | undefined;
+      //Coge el id del producto de la ruta
+      const productIdFromRoute = Number(routeParams.get('productId'));
 
-  async ngOnInit(): Promise<void> {
+      //Busca el producto con el id de la ruta
+      this.product = products.find(product => product.id === productIdFromRoute)
 
-    const allProducts = await this.productListService.getProducts();
-    //Buscamos el ID en la ruta
-    const routeParams = this.route.snapshot.paramMap;
-    const productIdFromRoute = Number(routeParams.get('productId'));
+    }
 
-    //Buscamos el producto en la lista que acabamos de traer
-    this.product = allProducts.find(p => p.id = productIdFromRoute);
-    this.chageDetectorRef.markForCheck()
-  }
-
+    product: Product | undefined;
 
     //Sirve para recoger la ruta exacta (ActivatedRoute)
     //cart inicializa el carrito, para poder añadir productos en él

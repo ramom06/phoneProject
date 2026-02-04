@@ -5,7 +5,6 @@ import { Cart } from './cart/cart'
 import {Shipping} from './shipping/shipping';
 import {Providers} from './providers-details/providers';
 import {ProviderList} from './provider-list/provider-list'
-import {CreateForm} from './create-form/create-form';
 
 export const routes: Routes = [
   {path: "", component: ProductList, title: "Home Page"},
@@ -14,5 +13,4 @@ export const routes: Routes = [
   { path: 'shipping', component: Shipping, title: "Shipping" },
   {path: 'providers-details/:id', component: Providers, title: "Providers"},
   {path: 'providers' , component: ProviderList, title: "Proveedores"},
-  {path: 'create', component: CreateForm}
 ];
