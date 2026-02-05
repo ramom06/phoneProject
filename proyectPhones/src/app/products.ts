@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   price: number;
   description: string;
+  stock: number;
 }
 
 export const products = [
@@ -11,21 +12,24 @@ export const products = [
     name: 'Phone XL',
     price: 799,
     description: 'A large phone with one of the best screens',
-    provider: 1
+    provider: 1,
+    stock: 10,
   },
   {
     id: 2,
     name: 'Phone Mini',
     price: 699,
     description: 'A great phone with one of the best cameras',
-    provider: 1
+    provider: 1,
+    stock: 0,
   },
   {
     id: 3,
     name: 'Phone Standard',
     price: 299,
     description: '',
-    provider: 2
+    provider: 2,
+    stock: 2,
   }
 ];
 

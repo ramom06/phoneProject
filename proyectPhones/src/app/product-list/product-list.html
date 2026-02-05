@@ -13,6 +13,14 @@
     <p>Description: {{product.description}}</p>
   }
 
+  @if (product.stock === 0) {
+    <p class="red">AGOTADO</p>
+  }@else if(product.stock > 5){
+    <p class="green">Stock {{product.stock}}</p>
+  }@else{
+    <p class="orange">Stock {{product.stock}}</p>
+  }
+
   <button type="button" (click)="share()">
     Share
   </button>

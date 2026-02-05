@@ -10,14 +10,11 @@ export class CartService {
   //En este array guardamos los productos cuando inicialices el carrito
   items: Product[] = [];
 
-
-
   // Exponemos el emisor como un Observable para que otros lo lean
-
-
   constructor(private http: HttpClient) { }
 
   addToCart(product: Product) {
+    product.stock-= 1;
     this.items.push(product);
   }
 

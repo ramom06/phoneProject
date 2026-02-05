@@ -3,7 +3,21 @@
   <!-- Currency sirve para transformar el precio a texto -->
   <h4>{{ product.price | currency }}</h4>
   <p>{{ product.description }}</p>
+
+  @if (product.stock === 0) {
+    <p class="red">AGOTADO</p>
+  }@else if(product.stock > 5){
+    <p class="green">Stock {{product.stock}}</p>
+  }@else{
+    <p class="orange">Stock {{product.stock}}</p>
+  }
+
   <a [routerLink]="['/providers-details', product.id]">Proveedor</a>
   <br>
-  <button type="button" (click)="addToCart(product)">Buy</button>
+
+  @if (product.stock === 0){
+    <button type="button" (click)="addToCart(product)" disabled>Buy</button>
+  }@else{
+    <button type="button" (click)="addToCart(product)">Buy</button>
+  }
 }
